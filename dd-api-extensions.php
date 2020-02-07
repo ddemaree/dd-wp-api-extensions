@@ -28,6 +28,12 @@ add_action( 'rest_api_init', function() {
     // register_rest_field( 'post', 'content_raw', array('get_callback' => 'add_content_raw', ));
     register_rest_field( 'post', 'excerpt_raw', array('get_callback' => 'add_excerpt_raw', ));
     register_rest_field( 'post', 'word_count', array('get_callback' => 'add_word_count', ));
+    register_rest_field( 'post', 'title_raw', array(
+        'get_callback' => function( $object, $field_name, $request ) {
+            $raw_title = $object['title']['raw'];
+            return $raw_title;
+        }
+    ));
 });
 
 function add_content_raw( $object, $field_name, $request ) {
